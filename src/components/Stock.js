@@ -7,6 +7,7 @@ export default function Stock ({ stockData }){
     const [stock, setStock] = useState(null);
     const { symbol } = useParams();
 
+    //const stock = stockData.find( x => x.symbol === symbol);
     const findNameUsingSymbol = () => {
         try {
             const res = stockData.find( x => x.symbol === symbol);
@@ -18,13 +19,13 @@ export default function Stock ({ stockData }){
         }
     }
 
-    useEffect (() => findNameUsingSymbol(), []);
+    useEffect (() => findNameUsingSymbol());
 
-    return stock ? (<>
+
+    return ( stock ? <>
                         <p>{ stock.name }</p> 
                         <p>{ stock.lastPrice }</p>
                         <p>{ stock.change }</p>
 
-                     </>)
-                  : <h1>no data</h1>
+                     </> : <h1>nothing</h1> )
 }
